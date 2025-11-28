@@ -76,8 +76,8 @@ st.write("Predict consumer personas and product-fit for fragrance descriptions."
 
 
 description = st.text_area(
-    "Enter a fragrance description:",
-    "Fresh lemon zest, icy mint, and clean eucalyptus.",
+    "Enter a fragrance description: Some examples: Men Dandruff Shampoo Menthol, peppermint, green tea and a clean aquatic freshness.",
+    "Bright lemon zest, fresh linen, crisp green apple and clean cotton undertones.",
     height=120
 )
 

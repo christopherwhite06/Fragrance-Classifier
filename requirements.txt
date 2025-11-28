@@ -8,3 +8,4 @@ torch
 streamlit
 plotly
 matplotlib
+streamlit
