@@ -3,7 +3,7 @@ A machine learning insight tool that predicts **consumer personas**, **demograph
 
 ---
 
-## 🔍 Overview
+## Overview
 FragranceMatch AI transforms any free-text scent description into a set of predictive insights using:
 
 - Sentence-BERT (all-mpnet-base-v2) embeddings  
@@ -14,7 +14,7 @@ This project is designed to demonstrate how AI can support **product targeting**
 
 ---
 
-## 🎯 Key Features
+## Key Features
 
 ### **1. Consumer Persona Prediction**
 Predicts probability distributions for:
