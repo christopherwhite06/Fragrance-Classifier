@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
 
-# Define age bins
+# Age group binning rules
 def assign_age_bin(age):
     if age <= 18: return "teen"
     if age <= 25: return "early_adult"
@@ -26,17 +26,25 @@ def train_classifiers(
     df = pd.read_csv(dataset_path)
     X = np.load(embeddings_path)
 
+    # Ensure dataset and embeddings match size
+    if len(df) != len(X):
+        raise ValueError(
+            f"ERROR: Dataset rows = {len(df)}, embeddings = {len(X)}.\n"
+            f"Run generate_dataset.py and embedder.py again."
+        )
+
     df["age_bin"] = df["age"].apply(assign_age_bin)
 
-    targets = {
+    classification_targets = {
         "gender": df["gender"],
         "mood": df["mood"],
         "country": df["country"],
+        "product_fit": df["product_fit"],   # NEW
         "age_bin": df["age_bin"]
     }
 
-    for target_name, y in targets.items():
-        print(f"\nTraining probabilistic classifier for: {target_name}")
+    for target_name, y in classification_targets.items():
+        print(f"\nTraining classifier for: {target_name}")
 
         clf = LogisticRegression(
             max_iter=2000,
@@ -47,9 +55,10 @@ def train_classifiers(
         clf.fit(X, y)
         joblib.dump(clf, f"{models_dir}/{target_name}_clf.pkl")
 
-        print(f"Saved {target_name} classifier.")
+        print(f"Saved classifier: {target_name}_clf.pkl")
 
-    print("\nTraining complete!")
+    print("\n✓ Training complete. All classifiers updated.")
+    print("New model added: product_fit_clf.pkl")
 
 
 if __name__ == "__main__":
